@@ -1,0 +1,16 @@
+# Workspace (eval outputs, benchmarks, timing data)
+ionic-capacitor-workspace/
+
+# Claude Code
+.claude/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Node
+node_modules/
+
+# Temporary files
+*.tmp
+/tmp/
