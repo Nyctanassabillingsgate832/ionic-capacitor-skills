@@ -36,7 +36,7 @@ This skill injects the correct patterns, best practices, and component knowledge
 | Sheet modals with breakpoints | Sometimes missed | Always correct |
 | Form validation patterns | Basic | Framework-idiomatic |
 
-**Benchmark: 100% with skill vs 81% without** (21/21 assertions passed)
+**Benchmark: 100% with skill vs 90.5% without** (42/42 assertions passed across 6 evals)
 
 ---
 
@@ -83,8 +83,13 @@ Once installed, just ask Claude to build your app. The skill activates when it d
 ```
 ionic-capacitor/
 ├── SKILL.md                    # Main skill (project setup, components, theming, native APIs, deployment)
+├── evals/
+│   └── evals.json              # 6 eval test cases with 42 assertions
 └── references/
     ├── components.md           # Complete reference of all 94 Ionic UI components
+    ├── native-plugins.md       # All 24 Capacitor plugins with code examples
+    ├── styling.md              # CSS utilities, Shadow Parts, custom properties, responsive design
+    ├── production.md           # Error handling, security, accessibility, debugging, performance
     ├── react.md                # React patterns: hooks, routing, Zustand/TanStack Query
     ├── angular.md              # Angular patterns: standalone components, signals, OnPush
     └── vue.md                  # Vue patterns: Composition API, Pinia, composables
@@ -96,7 +101,7 @@ ionic-capacitor/
 
 **Components:** All 94 Ionic components organized by category -- Layout, Navigation, Tabs, Menu, Toolbar, Buttons, Cards, Lists, Forms, Overlays, Grid, Date/Time, Media, and more
 
-**Capacitor Plugins:** Camera, Geolocation, Push Notifications, Filesystem, Preferences, Haptics, StatusBar, SplashScreen, App, Browser, Clipboard, Device, Keyboard, Network, Share
+**Capacitor Plugins:** All 24 official plugins -- Camera, Geolocation, Push Notifications, Filesystem, Preferences, Haptics, StatusBar, SplashScreen, App, Browser, Clipboard, Device, Keyboard, Network, Share, Local Notifications, Dialog, Action Sheet, Toast, App Launcher, Motion, Screen Reader, Text Zoom, Google Maps
 
 **Topics Covered:**
 - Project setup and configuration (`capacitor.config.ts`, `ionic.config.json`)
@@ -108,8 +113,16 @@ ionic-capacitor/
 - Overlays (modals, alerts, action sheets, toasts)
 - Pull-to-refresh and infinite scroll
 - Skeleton loading for perceived performance
+- CSS utility classes (`ion-padding`, `ion-text-center`, responsive visibility)
+- CSS Shadow Parts and custom properties for component customization
 - Theming with CSS custom properties
 - Dark mode (system, always, toggle with `ion-palette-dark`)
+- Error handling patterns for native APIs (try/catch, user cancellation)
+- Platform detection (`Capacitor.isNativePlatform()`, web fallbacks)
+- Offline handling with Network plugin and Preferences caching
+- Security best practices (XSS, CSP, secure storage)
+- Accessibility (ARIA, Screen Reader, keyboard navigation)
+- Debugging on devices (Safari Web Inspector, chrome://inspect)
 - App icons and splash screens (`@capacitor/assets`)
 - Performance optimization (lazy loading, image optimization, virtual scroll)
 - Deployment to iOS App Store and Google Play
@@ -118,20 +131,23 @@ ionic-capacitor/
 
 ## Benchmark Results
 
-Tested across 3 realistic app-building scenarios with 7 assertions each:
+Tested across 6 realistic app-building scenarios with 7 assertions each (42 total):
 
 | Eval | Framework | With Skill | Without Skill |
 |------|-----------|:---:|:---:|
 | Fitness Tracker | React | 7/7 (100%) | 5/7 (71%) |
-| Camera Photos | Angular | 7/7 (100%) | 7/7 (100%) |
-| Task Manager | Vue | 7/7 (100%) | 5/7 (71%) |
-| **Overall** | | **100%** | **81%** |
+| Camera Photos | Angular | 7/7 (100%) | 6/7 (86%) |
+| Task Manager | Vue | 7/7 (100%) | 6/7 (86%) |
+| Notification & Styling | React | 7/7 (100%) | 7/7 (100%) |
+| Location Explorer | Angular | 7/7 (100%) | 7/7 (100%) |
+| Notes with Offline | Vue | 7/7 (100%) | 7/7 (100%) |
+| **Overall** | | **42/42 (100%)** | **38/42 (90.5%)** |
 
 **Key differentiators** -- patterns the skill gets right that Claude misses without it:
 - `useIonViewWillEnter` / `onIonViewWillEnter` lifecycle hooks (vs `useEffect` / `onMounted`)
-- `ion-palette-dark` class for dark mode toggle (vs generic `dark` class)
-- `IonGrid` with `IonCol` for responsive galleries (vs single-column `IonList`)
-- `IonSkeletonText animated` for loading states
+- `IonGrid` with `IonCol` for responsive galleries (vs CSS grid or single-column `IonList`)
+- `IonSkeletonText animated` for loading states (vs `IonSpinner`)
+- Consistent error handling patterns across all native API calls
 
 ---
 

@@ -507,6 +507,32 @@ ion-item {
 }
 ```
 
+### CSS Utility Classes
+
+Ionic provides utility classes for common styling. Import them in your global CSS:
+
+```css
+/* Import all utilities at once */
+@import '@ionic/react/css/ionic.bundle.css';  /* React */
+@import '@ionic/angular/css/ionic.bundle.css'; /* Angular */
+@import '@ionic/vue/css/ionic.bundle.css';     /* Vue */
+```
+
+```html
+<!-- Padding & Margin -->
+<div class="ion-padding">Padded content</div>
+<div class="ion-margin-top ion-no-padding">Top margin, no padding</div>
+
+<!-- Text alignment -->
+<p class="ion-text-center">Centered text</p>
+
+<!-- Responsive visibility -->
+<div class="ion-hide-md-up">Mobile only</div>
+<div class="ion-hide-md-down">Tablet & desktop only</div>
+```
+
+> For complete utility class reference, Shadow Parts, and customization recipes, read `references/styling.md`.
+
 ## Capacitor Native APIs
 
 ### Installation Pattern
@@ -622,6 +648,17 @@ const result = await Filesystem.readFile({
 | `@capacitor/share` | `npm i @capacitor/share` | `Share.share({ title, text, url })` |
 | `@capacitor/splash-screen` | `npm i @capacitor/splash-screen` | `SplashScreen.hide()`, `SplashScreen.show()` |
 | `@capacitor/status-bar` | `npm i @capacitor/status-bar` | `StatusBar.setStyle()`, `StatusBar.hide()` |
+| `@capacitor/action-sheet` | `npm i @capacitor/action-sheet` | `ActionSheet.showActions({ options })` |
+| `@capacitor/app-launcher` | `npm i @capacitor/app-launcher` | `AppLauncher.canOpenUrl()`, `openUrl()` |
+| `@capacitor/dialog` | `npm i @capacitor/dialog` | `Dialog.alert()`, `confirm()`, `prompt()` |
+| `@capacitor/google-maps` | `npm i @capacitor/google-maps` | `GoogleMap.create()`, `addMarker()`, `setCamera()` |
+| `@capacitor/local-notifications` | `npm i @capacitor/local-notifications` | `LocalNotifications.schedule()`, `requestPermissions()` |
+| `@capacitor/motion` | `npm i @capacitor/motion` | `Motion.addListener('accel')`, `'orientation'` |
+| `@capacitor/screen-reader` | `npm i @capacitor/screen-reader` | `ScreenReader.isEnabled()`, `speak()` |
+| `@capacitor/text-zoom` | `npm i @capacitor/text-zoom` | `TextZoom.get()`, `set()`, `getPreferred()` |
+| `@capacitor/toast` | `npm i @capacitor/toast` | `Toast.show({ text, position, duration })` |
+
+> For full plugin documentation with code examples, read `references/native-plugins.md`.
 
 ## Performance Optimization
 
@@ -640,34 +677,15 @@ const Tab2 = React.lazy(() => import('./pages/Tab2'));
 </Suspense>
 ```
 
-### Image Optimization
+### Image & Render Optimization
 
-```tsx
-{/* Use IonImg for lazy loading */}
-<IonImg src={imageUrl} alt="Description" />
-
-{/* For lists, use thumbnails */}
-<IonThumbnail slot="start">
-  <IonImg src={thumbUrl} />
-</IonThumbnail>
-```
-
-### Minimize Re-renders
-
-- Memoize expensive computations with `useMemo`/`useCallback` (React) or `computed` (Vue)
-- Use `trackBy` in Angular `*ngFor` loops
-- Avoid inline object creation in props
+- Use `<IonImg>` instead of `<img>` for lazy loading; `<IonThumbnail>` in lists
+- Memoize with `useMemo`/`useCallback` (React), `computed` (Vue), `trackBy` (Angular)
+- Avoid inline object creation in JSX props
 
 ### Bundle Size
 
-```bash
-# Analyze bundle
-npx source-map-explorer dist/assets/*.js
-
-# Tree shake — import only what you use
-import { IonButton } from '@ionic/react';  # Good
-import * as Ionic from '@ionic/react';       # Bad — imports everything
-```
+Import only what you use: `import { IonButton } from '@ionic/react'` — never `import * as Ionic`. Analyze with `npx source-map-explorer dist/assets/*.js`.
 
 ### Virtual Scrolling for Large Lists
 
@@ -676,43 +694,21 @@ For lists with 100+ items, use virtual scrolling to render only visible items. E
 ## Development Workflow
 
 ```bash
-# Development with live reload
-ionic serve                    # Browser preview
-ionic cap run ios -l --external  # Live reload on iOS device
-ionic cap run android -l --external  # Live reload on Android
-
-# Build and sync
-ionic build                    # Build web assets
-ionic cap sync                 # Copy to native + update plugins
-ionic cap copy                 # Copy web assets only (faster)
-
-# Open native IDEs
-ionic cap open ios
-ionic cap open android
+ionic serve                           # Browser preview
+ionic cap run ios -l --external       # Live reload on iOS device
+ionic cap run android -l --external   # Live reload on Android
+ionic build && ionic cap sync         # Build + sync to native projects
+ionic cap open ios                    # Open Xcode
+ionic cap open android                # Open Android Studio
 ```
 
-### Debugging
-
-- **Browser**: Chrome/Safari DevTools via `ionic serve`
-- **iOS**: Safari > Develop > [Device] > [App]
-- **Android**: `chrome://inspect` while app runs on device/emulator
+**Debugging:** Browser via `ionic serve` DevTools • iOS via Safari > Develop > [Device] • Android via `chrome://inspect`
 
 ## Deployment
 
-### iOS
+**iOS:** Apple Developer account ($99/yr) → configure signing in Xcode → set Bundle ID matching `appId` → Product > Archive → upload via Xcode Organizer.
 
-1. Set up Apple Developer account ($99/year)
-2. Configure signing in Xcode: Signing & Capabilities > Team
-3. Set Bundle ID matching `appId` in `capacitor.config.ts`
-4. Build: Product > Archive in Xcode
-5. Upload via Xcode Organizer or Transporter app
-
-### Android
-
-1. Set up Google Play Developer account ($25 one-time)
-2. Generate signed bundle: Build > Generate Signed Bundle/APK
-3. Choose Android App Bundle (AAB) for Play Store
-4. Upload to Google Play Console
+**Android:** Google Play Developer account ($25) → Build > Generate Signed Bundle (AAB) → upload to Google Play Console.
 
 ### App Icons, Splash Screens & Assets Generation
 
@@ -723,12 +719,9 @@ Use `@capacitor/assets` to generate all platform icons and splash screens from s
 npm install @capacitor/assets --save-dev
 ```
 
-**Easy Mode (recommended)** — provide a single logo, tool generates everything:
+Place your logo at `assets/logo.png` (1024x1024px min), optionally `assets/logo-dark.png` for dark mode:
 
 ```bash
-# Place your logo at: assets/logo.png (or .svg)
-# Optionally: assets/logo-dark.png for dark mode
-
 npx @capacitor/assets generate \
   --iconBackgroundColor '#ffffff' \
   --iconBackgroundColorDark '#111111' \
@@ -736,35 +729,54 @@ npx @capacitor/assets generate \
   --splashBackgroundColorDark '#111111'
 ```
 
-**Custom Mode** — full control with separate source files:
+For custom mode, provide separate `icon-only.png`, `icon-foreground.png`, `icon-background.png`, and `splash.png` (2732x2732px) in the `assets/` directory. Use `--ios`, `--android`, or `--pwa` flags to target specific platforms.
 
+## Production Essentials
+
+### Error Handling for Native APIs
+
+Always wrap Capacitor plugin calls in try/catch and distinguish user cancellation from real errors:
+
+```typescript
+import { Camera, CameraResultType } from '@capacitor/camera';
+
+const takePhoto = async () => {
+  try {
+    const image = await Camera.getPhoto({
+      quality: 90,
+      resultType: CameraResultType.Uri,
+    });
+    return image.webPath;
+  } catch (error: any) {
+    if (error.message === 'User cancelled photos app') {
+      return null; // Not an error — user just cancelled
+    }
+    console.error('Camera error:', error);
+    throw error;
+  }
+};
 ```
-assets/
-├── icon-only.png          # 1024x1024px minimum
-├── icon-foreground.png    # 1024x1024px minimum
-├── icon-background.png    # 1024x1024px minimum
-├── splash.png             # 2732x2732px minimum
-└── splash-dark.png        # 2732x2732px (optional, for dark mode)
+
+### Platform-Aware Code
+
+```typescript
+import { Capacitor } from '@capacitor/core';
+
+// Check if running on native device (iOS/Android) vs browser
+if (Capacitor.isNativePlatform()) {
+  // Use native plugin
+  const { Camera } = await import('@capacitor/camera');
+  await Camera.getPhoto({ /* ... */ });
+} else {
+  // Web fallback
+  fileInput.click();
+}
+
+// Get specific platform: 'ios' | 'android' | 'web'
+const platform = Capacitor.getPlatform();
 ```
 
-```bash
-npx @capacitor/assets generate           # All platforms
-npx @capacitor/assets generate --ios     # iOS only
-npx @capacitor/assets generate --android # Android only
-npx @capacitor/assets generate --pwa     # PWA manifest icons only
-```
-
-**CLI flags:**
-| Flag | Purpose | Default |
-|------|---------|---------|
-| `--iconBackgroundColor` | Light mode icon background | `#ffffff` |
-| `--iconBackgroundColorDark` | Dark mode icon background | `#111111` |
-| `--splashBackgroundColor` | Light mode splash background | `#ffffff` |
-| `--splashBackgroundColorDark` | Dark mode splash background | `#111111` |
-| `--logoSplashScale` | Logo scale on splash | `0.2` |
-| `--assetPath <path>` | Source assets directory | `assets/` or `resources/` |
-
-Note: Android 12+ uses a redesigned splash screen API with smaller centered icons on colored backgrounds, different from the full-screen splash on Android 11 and earlier. The tool handles this automatically.
+> For complete production patterns (offline handling, security, accessibility, debugging), read `references/production.md`.
 
 ## Common Pitfalls
 
@@ -787,6 +799,9 @@ Note: Android 12+ uses a redesigned splash screen API with smaller centered icon
 For deep dives, read the appropriate reference:
 
 - **Components**: `references/components.md` — Complete list of all 94 Ionic UI components with usage guidance
+- **Native Plugins**: `references/native-plugins.md` — All 24 Capacitor plugins with code examples
+- **Styling**: `references/styling.md` — CSS utilities, Shadow Parts, custom properties, responsive design
+- **Production**: `references/production.md` — Error handling, security, accessibility, debugging, performance
 - **React**: `references/react.md` — Hooks, routing with React Router, state with Zustand/TanStack Query
 - **Angular**: `references/angular.md` — Standalone components, signals, guards, services
 - **Vue**: `references/vue.md` — Composition API, Pinia, Vue Router integration
